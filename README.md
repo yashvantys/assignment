@@ -1,41 +1,41 @@
 #Designing a database
 
-1. States Table
+- 1. States Table
 
-Create a table to store information about states, including a unique state ID, state name, and other relevant attributes.
+  - Create a table to store information about states, including a unique state ID, state name, and other relevant attributes.
 
-CREATE TABLE states (
+- CREATE TABLE states (
     state_id SERIAL PRIMARY KEY,
     state_name VARCHAR(255) NOT NULL,    
 );
 
-2. Geographical Data Table
+- 2. Geographical Data Table
 
-Create a table to store GeoJSON data for each state. You can use a data type like jsonb to store GeoJSON data efficiently.
+- Create a table to store GeoJSON data for each state. You can use a data type like jsonb to store GeoJSON data efficiently.
 
-CREATE TABLE geographical_data (
+- CREATE TABLE geographical_data (
     geo_id SERIAL PRIMARY KEY,
     state_id INT REFERENCES states(state_id) NOT NULL,
     geo_data jsonb NOT NULL
 );
 
-3. Population Data Table
+- 3. Population Data Table
 
-Create a table to store population data. The structure of this table depends on the data in the provided CSV file
+- Create a table to store population data. The structure of this table depends on the data in the provided CSV file
 
-CREATE TABLE population_data (
+- CREATE TABLE population_data (
     person_id SERIAL PRIMARY KEY,
     state_id INT REFERENCES states(state_id) NOT NULL,   
 );
 
-4. Adding Indexes
+- 4. Adding Indexes
 
-Create appropriate indexes on foreign keys and columns used frequently in queries to improve data retrieval performance.
+- Create appropriate indexes on foreign keys and columns used frequently in queries to improve data retrieval performance.
 
-CREATE INDEX idx_state_id ON geographical_data(state_id);
-CREATE INDEX idx_state_id ON population_data(state_id);
+- CREATE INDEX idx_state_id ON geographical_data(state_id);
+- CREATE INDEX idx_state_id ON population_data(state_id);
 
-#Hosting
+- #Hosting
 - To host your Node.js API and PostgreSQL database in the cloud, you can follow these general steps
 - 1. Database Hosting
     - Amazon RDS (Relational Database Service):
