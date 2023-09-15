@@ -2,7 +2,7 @@ const fs = require('fs');
 const csv = require('csv-parser');
 const { pool } = require('./dbConfig')
 
-export async function importGeoJSONData() {
+module.export = async function importGeoJSONData() {
     const filePath = 'path_to_geojson_file.json'
     try {
         const client = await pool.connect();
@@ -20,7 +20,7 @@ export async function importGeoJSONData() {
     }
 }
 
-export async function importCSVData() {
+module.export = async function importCSVData() {
     try {
         const client = await pool.connect();
         const filePath = 'path_to_csv_file.csv'
