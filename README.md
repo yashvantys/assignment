@@ -4,26 +4,32 @@
 
   - Create a table to store information about states, including a unique state ID, state name, and other relevant attributes.
 
-```CREATE TABLE states (
+```
+CREATE TABLE states (
     state_id SERIAL PRIMARY KEY,
     state_name VARCHAR(255) NOT NULL,    
-);```
+);
+
+```
 
 - 2. Geographical Data Table
 
 - Create a table to store GeoJSON data for each state. You can use a data type like jsonb to store GeoJSON data efficiently.
 
-```CREATE TABLE geographical_data (
+```
+CREATE TABLE geographical_data (
     geo_id SERIAL PRIMARY KEY,
     state_id INT REFERENCES states(state_id) NOT NULL,
     geo_data jsonb NOT NULL
-);```
+);
+```
 
 - 3. Population Data Table
 
 - Create a table to store population data. The structure of this table depends on the data in the provided CSV file
 
-```CREATE TABLE population_data (
+```
+CREATE TABLE population_data (
     person_id SERIAL PRIMARY KEY,
     state_id INT REFERENCES states(state_id) NOT NULL,   
 );
@@ -36,7 +42,7 @@
 ```
     CREATE INDEX idx_state_id ON geographical_data(state_id);
    CREATE INDEX idx_state_id ON population_data(state_id);
-   
+
    ```
 
 **#Hosting**
