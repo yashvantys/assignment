@@ -61,7 +61,7 @@
     - Configure security groups and access control policies to restrict access to your PostgreSQL database and API endpoints as needed
 
 #**API documentation in open api spec 3.0**
-`openapi: 3.0.3
+```openapi: 3.0.3
 info:
   title: Population API
   version: 1.0.0
@@ -133,5 +133,5 @@ tags:
   - name: States
     description: Endpoints related to states
   - name: People
-    description: Endpoints related to people`
+    description: Endpoints related to people```
 
