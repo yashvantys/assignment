@@ -143,5 +143,8 @@ tags:
   - name: States
     description: Endpoints related to states
   - name: People
-    description: Endpoints related to people```
+    description: Endpoints related to people
+    
+    ```
+
 
