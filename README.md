@@ -1,6 +1,6 @@
-#Designing a database
+**#Designing a database**
 
-- 1. States Table
+- #States Table
 
   - Create a table to store information about states, including a unique state ID, state name, and other relevant attributes.
 
@@ -35,7 +35,7 @@
 - CREATE INDEX idx_state_id ON geographical_data(state_id);
 - CREATE INDEX idx_state_id ON population_data(state_id);
 
-- #Hosting
+**#Hosting**
 - To host your Node.js API and PostgreSQL database in the cloud, you can follow these general steps
 - 1. Database Hosting
     - Amazon RDS (Relational Database Service):
@@ -59,4 +59,79 @@
      - Configure environment variables to store sensitive information like database credentials and API keys securely
 - 4. Security and Access Control
     - Configure security groups and access control policies to restrict access to your PostgreSQL database and API endpoints as needed
-- 
+
+#**API documentation in open api spec 3.0**
+openapi: 3.0.3
+info:
+  title: Population API
+  version: 1.0.0
+  description: An API for managing state information and population data.
+
+paths:
+  /states:
+    get:
+      summary: Get a list of all states
+      responses:
+        '200':
+          description: A list of states
+          content:
+            application/json:
+              example:
+                - state_id: 1
+                  state_name: "State A"
+                - state_id: 2
+                  state_name: "State B"
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    state_id:
+                      type: integer
+                    state_name:
+                      type: string
+      tags:
+        - States
+
+  /state/{stateId}:
+    parameters:
+      - in: path
+        name: stateId
+        required: true
+        schema:
+          type: integer
+        description: The unique ID of the state
+    get:
+      summary: Get people living in a specific state
+      responses:
+        '200':
+          description: A list of people in the state
+          content:
+            application/json:
+              example:
+                - person_id: 1
+                  state_id: 1
+                  name: "John Doe"
+                - person_id: 2
+                  state_id: 1
+                  name: "Jane Smith"
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    person_id:
+                      type: integer
+                    state_id:
+                      type: integer
+                    name:
+                      type: string
+      tags:
+        - People
+
+tags:
+  - name: States
+    description: Endpoints related to states
+  - name: People
+    description: Endpoints related to people
+
